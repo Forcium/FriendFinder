@@ -179,7 +179,7 @@
 			</div>
 			<div class="modal-body">
 				<h2 id="bestMatchName"></h2>
-				<img id="bestMatch" src="" width=500px alt="Best Match">
+				<img id="bestMatch" src="https://www.mrc.state.mn.us/wp-content/uploads/2017/03/unk-person.png" width=500px alt="Best Match">
 			</div>
 		</div>
 	</div>
@@ -193,6 +193,12 @@
 
 	$('#submit').on("click", function() {
 
+		empty();
+
+	});
+
+
+	function pushIt() {
 		var userInput = {
 			name: $('#name').val().trim(),
 			photo: $('#photo').val().trim(),
@@ -222,9 +228,9 @@
 		});
 
 		return false;
-	});
+	}
 
-	function clearTable() {
+		function clearTable() {
 
       var currentURL = window.location.origin;
       $.ajax({ url: currentURL + "/api/clear", method: "POST" });
@@ -239,6 +245,18 @@
       location.reload();
 
     });
+
+		//makes sure the user inputs a name
+		function empty() {
+	    var x;
+	    x = document.getElementById("name").value;
+	    if (x == "") {
+	        alert("Enter a name");
+	        return;
+			}else{
+				pushIt();
+			}
+		}
 
 </script>
 
