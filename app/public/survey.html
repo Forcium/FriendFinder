@@ -162,7 +162,7 @@
 					</select>
 				</div>
 			</fieldset><br>
-			<input type="submit" class="btn btn-primary" value="Request Friend" id="submit">
+			<input type="" class="btn btn-primary" value="Request Friend" id="submit">
 		</form>
 	</div>
 
@@ -192,7 +192,11 @@
 <script type="text/javascript">
 
 	$('#submit').on("click", function() {
+		empty();
 
+	});
+
+	function greenLight(){
 		var userInput = {
 			name: $('#name').val().trim(),
 			photo: $('#photo').val().trim(),
@@ -222,22 +226,34 @@
 		});
 
 		return false;
-	});
+	}
+
+
+	function empty() {
+    var x;
+		var y;
+    x = document.getElementById("name").value;
+		y = document.getElementById("photo").value;
+    if (x == "" || y == "")
+     {
+        alert("Enter all fields!");
+				return false;
+				location.reload();
+     }else{
+			 greenLight();
+		 }
+  }
 
 	function clearTable() {
-
-      var currentURL = window.location.origin;
-      $.ajax({ url: currentURL + "/api/clear", method: "POST" });
-
-    }
+    var currentURL = window.location.origin;
+    $.ajax({ url: currentURL + "/api/clear", method: "POST" });
+  }
 
     $("#clear").on("click", function() {
       alert("Clearing...");
       clearTable();
-
       // Refresh the page after data is cleared
       location.reload();
-
     });
 
 </script>
